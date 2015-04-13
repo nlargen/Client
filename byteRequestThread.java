@@ -1,11 +1,19 @@
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.Socket; 
+ 
 
 public class byteRequestThread extends clientHelperThread
 {
-	public byteRequestThread(int[] theFileArray)
+	private Socket theSocket; 
+	
+	
+	public byteRequestThread(int[] theFileArray, Socket theSocket)
 	{
-		super(theFileArray);
-	}
+		super(theFileArray, theSocket);
+		this.theSocket = theSocket; 
+		}
 	
 	public void run()
 	{
@@ -15,13 +23,25 @@ public class byteRequestThread extends clientHelperThread
 		{
 			
 			//*****Write Code HERE****
-			// not sure how to link it with the current byte we need
-			int i = 0; 
-			if(theFileArray[] != null)
+			
+			//moves through existing array looking to see if we have the byte
+			for(int i = 0; i <= theFileArray.length; i++) 
+			{
+				
+			if(theFileArray[i] == 1);
 			{
 				//sends specific byte at index i out to the server 
-				FileOutputStream fos = new FileOutputStream("" + theFileArray[i]); 
-				fos.flush();
+				try {
+					//I found this by mistyping something it sends just one byte over the socket as an integer
+					// i think this does what i want it to for responding with the byte that would be at i
+					this.theSocket.sendUrgentData(i);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+			}
 			}
 			
 		}
